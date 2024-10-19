@@ -4,6 +4,9 @@ from .serializers import UserSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import Product
 from .serializers import ProductSerializer
+from .models import CartItem
+from .models import Cart
+from .serializers import CartItemSerializer, CartSerializer
 
 class UserRegistrationView(generics.CreateAPIView):
     serializer_class=UserSerializer
@@ -20,4 +23,13 @@ class ProductListCreateView(generics.ListCreateAPIView):
 class ProductDetailView(generics.RetrieveAPIView):
     queryset=Product.objects.all()
     serializer_class=ProductSerializer
+
+
+class CartView(generics.ListCreateAPIView):
+    queryset=Cart.objects.all()
+    serializer_class=CartSerializer
+
+class CartDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Cart.objects.all()
+    serializer_class=CartSerializer
 
