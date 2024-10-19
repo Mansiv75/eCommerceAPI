@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from .models import Product
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,4 +13,9 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data["password"])
         user.save()
         return user
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Product
+        fields="__all__"    
 
