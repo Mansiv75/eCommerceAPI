@@ -9,7 +9,8 @@ from .models import Cart
 from .serializers import CartItemSerializer, CartSerializer
 from rest_framework import status
 from rest_framework.response import Response
-
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 class UserRegistrationView(generics.CreateAPIView):
     serializer_class=UserSerializer
 
@@ -43,3 +44,9 @@ class CartItemDeleteView(generics.DestroyAPIView):
         cart_item=self.get_object()
         cart_item.delete()
         return Response({"message":"Item removed from cart"},status=status.HTTP_204_NO_CONTENT)
+
+class ProductListCreateView(generics.ListCreateAPIView):
+    queryset=Product.objects.all()
+    serializer_class=ProductSerializer
+    filter_backends=[DjangoFilterBackend, filters.SearchFilter]
+    search_fields=['name', 'description']    
