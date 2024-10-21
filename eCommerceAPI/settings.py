@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-k60$9n@h-4$p6%!@_ywkr6zj7!^kh-7ht072nwx7h$8&va9qgi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['eCommerceAPI.onrender.com', '127.0.0.1']
+
 
 
 # Application definition
@@ -132,3 +133,5 @@ REST_FRAMEWORK = {
 
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
