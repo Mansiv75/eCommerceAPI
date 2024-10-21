@@ -7,6 +7,7 @@ from .views import CartView
 from .views import CartDetailView
 from .views import CartItemDeleteView
 from .views import CheckoutView
+from .swagger import schema_view
 
 urlpatterns=[
     path('register/', UserRegistrationView.as_view(), name='user-register'),
@@ -17,4 +18,7 @@ urlpatterns=[
     path('cart/<int:pk>/', CartDetailView.as_view(), name='cart-detail'),
     path('cart-item/<int:pk>/', CartItemDeleteView.as_view(), name='cart-item-delete'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
+
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
