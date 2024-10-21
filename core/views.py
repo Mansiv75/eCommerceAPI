@@ -9,6 +9,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 import stripe
 from django.conf import settings
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAdminUser
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 class UserRegistrationView(generics.CreateAPIView):
@@ -21,6 +23,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 class ProductListCreateView(generics.ListCreateAPIView):
     queryset=Product.objects.all()
     serializer_class=ProductSerializer
+    permission_classes=[IsAdminUser]
 
 #retrieve a single product
 class ProductDetailView(generics.RetrieveAPIView):
